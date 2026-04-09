@@ -1,14 +1,23 @@
-import { mockPlates } from "../service/plateData";
+"use client";
+
+import FilterButtons from "./FilterButtons";
+import PlateCard from "./PlateCard";
+import { useMenuFilter } from "../hooks/useMenuFilter";
 
 export default function Menu() {
+  const { selectedCategory, setSelectedCategory, filteredPlates } =
+    useMenuFilter();
+
   return (
     <article className="w-full min-h-screen p-4">
+      <FilterButtons
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
+
       <ul className="grid grid-cols-4 gap-4">
-        {mockPlates.map((item) => (
-          <li key={item.id} className="border p-4 rounded">
-            <h2 className="text-xl font-bold">{item.name}</h2>
-            <p className="text-sm text-gray-600">{item.description}</p>
-          </li>
+        {filteredPlates.map((plate) => (
+          <PlateCard key={plate.id} plate={plate} />
         ))}
       </ul>
     </article>

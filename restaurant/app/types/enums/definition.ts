@@ -1,5 +1,5 @@
 export enum definition {
-  dessert,
-  entrance,
-  main,
+  ENTRADA,
+  PRINCIPAL,
+  SOBREMESA,
 }
